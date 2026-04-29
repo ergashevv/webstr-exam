@@ -267,3 +267,10 @@
 .restartBtn:hover {
   background: rgba(0,0,0,0.05);
 }
+@media (max-width: 640px) {
+  .grammarHeader h2 { font-size: 2rem; }
+  .optionsGrid { grid-template-columns: 1fr; }
+  .resultsCard { padding: 30px 20px; }
+  .scoreNumber { font-size: 3.5rem; }
+  .submitBtn { width: 100%; padding: 15px; }
+}

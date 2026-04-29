@@ -52,47 +52,63 @@ export default function LandingPage() {
       {/* Header */}
       <header className="glass" style={{
         position: 'fixed',
-        top: '20px',
+        top: '10px',
         left: '50%',
         transform: 'translateX(-50%)',
-        width: 'calc(100% - 40px)',
+        width: 'calc(100% - 20px)',
         maxWidth: '1200px',
         zIndex: 100,
-        padding: '15px 30px',
+        padding: '10px 15px',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '10px'
       }}>
-        <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
+        <div style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
           Next<span style={{ color: 'var(--primary-light)' }}>Gen</span>
         </div>
-        <nav style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
+        <nav style={{ 
+          display: 'flex', 
+          gap: '12px', 
+          alignItems: 'center',
+          fontSize: '0.85rem',
+          flexWrap: 'wrap',
+          justifyContent: 'center'
+        }}>
           <a href="#intro" style={{ fontWeight: '600' }}>Intro</a>
-          <a href="#process" style={{ fontWeight: '600' }}>Process</a>
           <Link href="/exercises/rules" style={{ fontWeight: '600', color: 'var(--primary-light)' }}>Rules</Link>
+          <Link href="/exercises/vocabulary" style={{ fontWeight: '600', color: 'var(--primary-light)' }}>Vocab</Link>
+          <Link href="/exercises/skills" style={{ fontWeight: '600', color: 'var(--primary-light)' }}>Skills</Link>
           <Link href="/exercises/will-going-to" style={{ 
             background: 'var(--primary)', 
             color: 'white', 
-            padding: '10px 20px', 
+            padding: '8px 15px', 
             borderRadius: '50px',
-            fontWeight: 'bold',
-            boxShadow: '0 4px 14px 0 rgba(var(--primary-rgb), 0.39)'
+            fontWeight: 'bold'
           }}>
             Exercises
           </Link>
         </nav>
       </header>
-
       {/* Hero Section */}
       <section style={{ 
         height: '100vh', 
+        width: '100%',
+        maxWidth: 'none',
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center', 
         justifyContent: 'center',
         position: 'relative',
         textAlign: 'center',
-        padding: '0 20px'
+        padding: '0 20px',
+        backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), url(/hero-bg.PNG)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        margin: '0',
+        zIndex: 1
       }}>
         <div className="hero-glow" />
         
@@ -120,50 +136,24 @@ export default function LandingPage() {
         </motion.div>
 
         {/* Floating Career Circles */}
-        <div style={{ 
-          position: 'absolute', 
-          width: '100%', 
-          height: '100%', 
-          top: 0, 
-          left: 0, 
-          pointerEvents: 'none',
-          zIndex: -1
-        }}>
+        <div className="responsive-grid" style={{ gap: '20px' }}>
           {careers.map((career, i) => (
             <motion.div
               key={career.name}
               initial={{ opacity: 0, scale: 0 }}
-              animate={{ 
-                opacity: 0.8, 
-                scale: 1,
-                y: [0, -20, 0],
-              }}
-              transition={{ 
-                opacity: { delay: i * 0.1 + 0.5, duration: 0.5 },
-                scale: { delay: i * 0.1 + 0.5, duration: 0.5 },
-                y: { repeat: Infinity, duration: 3 + i, ease: "easeInOut" }
-              }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="glass"
               style={{
-                position: 'absolute',
-                top: `${20 + (Math.sin(i) * 30 + 30)}%`,
-                left: `${10 + (i * 15)}%`,
-                width: '100px',
-                height: '100px',
-                borderRadius: '50%',
-                background: 'white',
+                padding: '20px',
                 display: 'flex',
-                flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 15px 35px -5px rgba(0,0,0,0.1)',
+                gap: '15px',
                 border: `2px solid ${career.color}`,
                 color: career.color,
-                fontSize: '10px',
-                fontWeight: 'bold'
               }}
             >
               {career.icon}
-              <span style={{ marginTop: '5px' }}>{career.name}</span>
+              <span style={{ fontWeight: 'bold' }}>{career.name}</span>
             </motion.div>
           ))}
         </div>
@@ -209,7 +199,7 @@ export default function LandingPage() {
           <p style={{ color: 'var(--text-muted)' }}>Follow these steps to explore your dream job</p>
         </div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
+        <div className="responsive-grid">
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
