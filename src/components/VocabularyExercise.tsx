@@ -6,7 +6,11 @@ import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, Link as LinkIcon
 import { vocabularyExercises, VocabExercise } from '../data/vocabulary-exercises';
 import styles from './VocabularyExercise.module.css';
 
-const VocabularyExercise = () => {
+interface VocabularyExerciseProps {
+  exercises?: VocabExercise[];
+}
+
+const VocabularyExercise = ({ exercises = vocabularyExercises }: VocabularyExerciseProps) => {
   const [matchingAnswers, setMatchingAnswers] = useState<Record<string, string>>({}); // leftId -> rightValue
   const [fillAnswers, setFillAnswers] = useState<Record<string, string>>({}); // questionId -> value
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
@@ -31,7 +35,7 @@ const VocabularyExercise = () => {
     let score = 0;
     let total = 0;
 
-    vocabularyExercises.forEach(ex => {
+    exercises.forEach(ex => {
       if (ex.type === 'matching') {
         ex.pairs?.forEach(pair => {
           total++;
@@ -82,7 +86,7 @@ const VocabularyExercise = () => {
         </div>
 
         <div className={styles.reviewList} style={{ marginTop: '40px' }}>
-          {vocabularyExercises.map(ex => (
+          {exercises.map(ex => (
             <div key={ex.id} className={styles.reviewSection}>
               <h4 style={{ margin: '20px 0 10px', textAlign: 'left' }}>{ex.title}</h4>
               {ex.type === 'matching' ? (
@@ -137,7 +141,7 @@ const VocabularyExercise = () => {
         <p className={styles.sectionDesc}>Learn essential words about professions and workplaces.</p>
       </div>
 
-      {vocabularyExercises.map((ex, exIndex) => (
+      {exercises.map((ex, exIndex) => (
         <motion.section 
           key={ex.id}
           initial={{ opacity: 0, x: -20 }}

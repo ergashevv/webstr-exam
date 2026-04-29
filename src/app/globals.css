@@ -290,6 +290,11 @@ section {
   border-color: var(--primary-light);
 }
 
+.glass:hover .visit-link {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
 /* Responsive Grid Utilities */
 .responsive-grid {
   display: grid;
