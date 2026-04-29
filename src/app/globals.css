@@ -153,7 +153,7 @@ header.glass {
 @media (max-width: 768px) {
   .hero-section {
     background-attachment: scroll;
-    padding-top: 100px;
+    padding-top: 160px; /* Increased from 100px to accommodate wrapped header */
   }
 }
 

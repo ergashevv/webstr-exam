@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Stethoscope, 
   GraduationCap, 
@@ -30,33 +30,58 @@ import {
   Lightbulb,
   Rocket,
   Sprout,
-  ShieldCheck
+  ShieldCheck,
+  X
 } from 'lucide-react';
 
 
 const careers = [
-  { name: 'DOCTOR', icon: <Stethoscope size={32} />, color: '#EF4444' },
-  { name: 'TEACHER', icon: <GraduationCap size={32} />, color: '#3B82F6' },
-  { name: 'PROGRAMMER', icon: <Code2 size={32} />, color: '#10B981' },
-  { name: 'DESIGNER', icon: <Palette size={32} />, color: '#F59E0B' },
-  { name: 'ENGINEER', icon: <HardHat size={32} />, color: '#6366F1' },
-  { name: 'PILOT', icon: <Plane size={32} />, color: '#0F172A' },
-  { name: 'CHEF', icon: <Utensils size={32} />, color: '#EC4899' },
-  { name: 'SCIENTIST', icon: <FlaskConical size={32} />, color: '#8B5CF6' },
-  { name: 'ARTIST', icon: <Paintbrush size={32} />, color: '#F43F5E' },
-  { name: 'FIRE FIGHTER', icon: <Flame size={32} />, color: '#F97316' },
-  { name: 'LAWYER', icon: <Gavel size={32} />, color: '#374151' },
-  { name: 'NURSE', icon: <HeartPulse size={32} />, color: '#06B6D4' },
-  { name: 'ASTRONAUT', icon: <Rocket size={32} />, color: '#8B5CF6' },
-  { name: 'FARMER', icon: <Sprout size={32} />, color: '#10B981' },
-  { name: 'POLICE', icon: <ShieldCheck size={32} />, color: '#1E3A8A' },
+  { name: 'DOCTOR', icon: <Stethoscope size={32} />, color: '#EF4444', image: '/doctor.png' },
+  { name: 'TEACHER', icon: <GraduationCap size={32} />, color: '#3B82F6', image: '/teacher.webp' },
+  { name: 'PROGRAMMER', icon: <Code2 size={32} />, color: '#10B981', image: '/programmer.png' },
+  { name: 'DESIGNER', icon: <Palette size={32} />, color: '#F59E0B', image: '/designer.png' },
+  { name: 'ENGINEER', icon: <HardHat size={32} />, color: '#6366F1', image: '/engineer.png' },
+  { name: 'PILOT', icon: <Plane size={32} />, color: '#0F172A', image: '/pilot.png' },
+  { name: 'CHEF', icon: <Utensils size={32} />, color: '#EC4899', image: '/chef.png' },
+  { name: 'SCIENTIST', icon: <FlaskConical size={32} />, color: '#8B5CF6', image: '/scientist.png' },
+  { name: 'ARTIST', icon: <Paintbrush size={32} />, color: '#F43F5E', image: '/artist.png' },
+  { name: 'FIRE FIGHTER', icon: <Flame size={32} />, color: '#F97316', image: '/firefighter.png' },
+  { name: 'LAWYER', icon: <Gavel size={32} />, color: '#374151', image: '/lawyer.png' },
+  { name: 'NURSE', icon: <HeartPulse size={32} />, color: '#06B6D4', image: '/nurse.png' },
+  { name: 'ASTRONAUT', icon: <Rocket size={32} />, color: '#8B5CF6', image: '/astronaut.png' },
+  { name: 'FARMER', icon: <Sprout size={32} />, color: '#10B981', image: '/farmer.png' },
+  { name: 'POLICE', icon: <ShieldCheck size={32} />, color: '#1E3A8A', image: '/police.png' },
 ];
 
 const steps = [
-  { title: 'STEP 1', label: 'Choose a job', desc: 'Think about what job you would like to have in the future.' },
-  { title: 'STEP 2', label: 'Find information', desc: 'Use the internet to answer questions about the job.' },
-  { title: 'STEP 3', label: 'Write sentences', desc: 'Write 4-6 sentences using "will" or "going to".' },
-  { title: 'STEP 4', label: 'Presentation', desc: 'Make a mini-presentation and show it to the class.' },
+  { 
+    title: 'STEP 1', 
+    label: 'Choose a job', 
+    desc: 'Think about what job you would like to have in the future.',
+    gradient: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.2) 100%)',
+    color: '#3b82f6'
+  },
+  { 
+    title: 'STEP 2', 
+    label: 'Find information', 
+    desc: 'Use the internet to answer questions about the job.',
+    gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.2) 100%)',
+    color: '#10b981'
+  },
+  { 
+    title: 'STEP 3', 
+    label: 'Write sentences', 
+    desc: 'Write 4-6 sentences using "will" or "going to".',
+    gradient: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(124, 58, 237, 0.2) 100%)',
+    color: '#8b5cf6'
+  },
+  { 
+    title: 'STEP 4', 
+    label: 'Presentation', 
+    desc: 'Make a mini-presentation and show it to the class.',
+    gradient: 'linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(225, 29, 72, 0.2) 100%)',
+    color: '#f43f5e'
+  },
 ];
 
 const values = [
@@ -68,6 +93,8 @@ const values = [
 ];
 
 export default function LandingPage() {
+  const [selectedCareer, setSelectedCareer] = React.useState<typeof careers[0] | null>(null);
+
   return (
     <main style={{ minHeight: '100vh', overflowX: 'hidden' }}>
       {/* Header */}
@@ -122,7 +149,10 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          style={{ marginBottom: '20px' }}
+          style={{ 
+            marginBottom: '20px',
+            marginTop: 'clamp(20px, 5vh, 60px)' // Add dynamic top margin
+          }}
         >
           <h1 style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', lineHeight: 1, color: 'var(--primary)' }}>
             Next<span style={{ color: 'var(--accent)' }}>Gen</span>
@@ -151,6 +181,7 @@ export default function LandingPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1 }}
               className="glass career-card"
+              onClick={() => setSelectedCareer(career)}
               style={{
                 padding: '15px 25px',
                 display: 'flex',
@@ -219,7 +250,13 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              style={{ padding: '40px', position: 'relative', overflow: 'hidden' }}
+              style={{ 
+                padding: '40px', 
+                position: 'relative', 
+                overflow: 'hidden',
+                background: step.gradient,
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}
             >
               <div style={{ 
                 position: 'absolute', 
@@ -227,12 +264,13 @@ export default function LandingPage() {
                 right: '-20px', 
                 fontSize: '8rem', 
                 fontWeight: '900', 
-                opacity: 0.05,
-                color: 'var(--primary)'
+                opacity: 0.1,
+                color: step.color,
+                filter: 'blur(2px)'
               }}>
                 {i + 1}
               </div>
-              <h4 style={{ color: 'var(--primary-light)', marginBottom: '10px' }}>{step.title}</h4>
+              <h4 style={{ color: step.color, marginBottom: '10px', letterSpacing: '0.1em' }}>{step.title}</h4>
               <h3 style={{ marginBottom: '15px' }}>{step.label}</h3>
               <p style={{ color: 'var(--text-muted)', lineHeight: 1.5 }}>{step.desc}</p>
             </motion.div>
@@ -283,10 +321,38 @@ export default function LandingPage() {
 
           <div className="responsive-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '25px' }}>
             {[
-              { name: 'Bureau of Labor Statistics', url: 'bls.gov/k12', icon: <BarChart3 size={24} />, desc: 'Official U.S. government data providing comprehensive information about hundreds of occupations.' },
-              { name: 'Career One Stop', url: 'careeronestop.org', icon: <Briefcase size={24} />, desc: 'Your source for career exploration, training, and jobs. Sponsored by the U.S. Department of Labor.' },
-              { name: 'Job Profiles', url: 'prospects.ac.uk', icon: <UserCircle size={24} />, desc: 'Detailed job profiles to help you find the right career path and understand daily responsibilities.' },
-              { name: 'Skills & Qualities', url: 'skillsyouneed.com', icon: <Lightbulb size={24} />, desc: 'Identify and develop the essential soft skills required for professional success in any field.' }
+              { 
+                name: 'Bureau of Labor Statistics', 
+                url: 'bls.gov/k12', 
+                icon: <BarChart3 size={24} />, 
+                desc: 'Official U.S. government data providing comprehensive information about hundreds of occupations.',
+                gradient: 'linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(67, 56, 202, 0.15) 100%)',
+                color: '#4f46e5'
+              },
+              { 
+                name: 'Career One Stop', 
+                url: 'careeronestop.org', 
+                icon: <Briefcase size={24} />, 
+                desc: 'Your source for career exploration, training, and jobs. Sponsored by the U.S. Department of Labor.',
+                gradient: 'linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(29, 78, 216, 0.15) 100%)',
+                color: '#2563eb'
+              },
+              { 
+                name: 'Job Profiles', 
+                url: 'prospects.ac.uk', 
+                icon: <UserCircle size={24} />, 
+                desc: 'Detailed job profiles to help you find the right career path and understand daily responsibilities.',
+                gradient: 'linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(15, 118, 110, 0.15) 100%)',
+                color: '#0d9488'
+              },
+              { 
+                name: 'Skills & Qualities', 
+                url: 'skillsyouneed.com', 
+                icon: <Lightbulb size={24} />, 
+                desc: 'Identify and develop the essential soft skills required for professional success in any field.',
+                gradient: 'linear-gradient(135deg, rgba(217, 119, 6, 0.08) 0%, rgba(180, 83, 9, 0.15) 100%)',
+                color: '#d97706'
+              }
             ].map((link, i) => (
               <motion.a 
                 key={link.name} 
@@ -306,12 +372,13 @@ export default function LandingPage() {
                   textDecoration: 'none',
                   color: 'inherit',
                   border: '1px solid var(--glass-border)',
-                  height: '100%'
+                  height: '100%',
+                  background: link.gradient
                 }}
                 whileHover={{ 
                   y: -10, 
-                  boxShadow: '0 30px 60px -12px rgba(var(--primary-rgb), 0.15)',
-                  borderColor: 'rgba(var(--primary-rgb), 0.2)',
+                  boxShadow: `0 30px 60px -12px rgba(var(--primary-rgb), 0.15)`,
+                  borderColor: link.color,
                   background: 'white'
                 }}
               >
@@ -319,8 +386,8 @@ export default function LandingPage() {
                   width: '50px',
                   height: '50px',
                   borderRadius: '16px', 
-                  background: 'rgba(var(--primary-rgb), 0.05)',
-                  color: 'var(--primary)',
+                  background: `${link.color}15`,
+                  color: link.color,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -333,7 +400,7 @@ export default function LandingPage() {
                     {link.name}
                     <ExternalLink size={14} style={{ opacity: 0.4 }} />
                   </div>
-                  <div style={{ fontSize: '13px', color: 'var(--primary-light)', fontWeight: '700', marginBottom: '12px', letterSpacing: '0.05em' }}>
+                  <div style={{ fontSize: '13px', color: link.color, fontWeight: '700', marginBottom: '12px', letterSpacing: '0.05em' }}>
                     {link.url.toUpperCase()}
                   </div>
                   <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -389,6 +456,120 @@ export default function LandingPage() {
           &copy; 2026 NEXTGEN EDUCATIONAL PLATFORM
         </div>
       </footer>
+      {/* Career Modal */}
+      <AnimatePresence>
+        {selectedCareer && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCareer(null)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'rgba(0, 0, 0, 0.6)',
+              backdropFilter: 'blur(10px)',
+              zIndex: 1000,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '20px'
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="glass"
+              style={{
+                maxWidth: '800px',
+                width: '100%',
+                maxHeight: '90vh',
+                position: 'relative',
+                overflow: 'hidden',
+                background: 'var(--background)',
+                border: `2px solid ${selectedCareer.color}`
+              }}
+            >
+              <button
+                onClick={() => setSelectedCareer(null)}
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  background: 'white',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '40px',
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  zIndex: 10,
+                  color: 'var(--primary)'
+                }}
+              >
+                <X size={24} />
+              </button>
+
+              <div style={{ position: 'relative', paddingTop: '60%' }}>
+                <img 
+                  src={selectedCareer.image} 
+                  alt={selectedCareer.name}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+
+              <div style={{ padding: '30px', textAlign: 'center' }}>
+                <div style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '12px', 
+                  color: selectedCareer.color,
+                  marginBottom: '15px'
+                }}>
+                  {selectedCareer.icon}
+                  <h2 style={{ fontSize: '2rem', margin: 0 }}>{selectedCareer.name}</h2>
+                </div>
+                <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                  Learn more about the profession of {selectedCareer.name.toLowerCase()} in our interactive modules.
+                </p>
+                
+                <Link 
+                  href="/exercises/vocabulary/jobs"
+                  onClick={() => setSelectedCareer(null)}
+                  style={{
+                    display: 'inline-block',
+                    marginTop: '25px',
+                    background: selectedCareer.color,
+                    color: 'white',
+                    padding: '12px 30px',
+                    borderRadius: '50px',
+                    fontWeight: 'bold',
+                    textDecoration: 'none',
+                    boxShadow: `0 8px 20px -5px ${selectedCareer.color}66`
+                  }}
+                >
+                  Start Learning
+                </Link>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

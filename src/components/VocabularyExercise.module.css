@@ -33,8 +33,17 @@
 
 @media (max-width: 768px) {
   .matchingGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr; /* Keep two columns */
+    gap: 12px; /* Smaller gap for mobile */
+  }
+
+  .matchItem {
+    padding: 12px 10px; /* Smaller padding for mobile */
+    font-size: 0.85rem; /* Smaller font for mobile */
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
   }
 }
 
