@@ -37,7 +37,7 @@ import {
 
 const careers = [
   { name: 'DOCTOR', icon: <Stethoscope size={32} />, color: '#EF4444', image: '/doctor.png' },
-  { name: 'TEACHER', icon: <GraduationCap size={32} />, color: '#3B82F6', image: '/teacher.webp' },
+  { name: 'TEACHER', icon: <GraduationCap size={32} />, color: '#3B82F6', image: '/teacher.png' },
   { name: 'PROGRAMMER', icon: <Code2 size={32} />, color: '#10B981', image: '/programmer.png' },
   { name: 'DESIGNER', icon: <Palette size={32} />, color: '#F59E0B', image: '/designer.png' },
   { name: 'ENGINEER', icon: <HardHat size={32} />, color: '#6366F1', image: '/engineer.png' },
@@ -518,17 +518,27 @@ export default function LandingPage() {
                 <X size={24} />
               </button>
 
-              <div style={{ position: 'relative', paddingTop: '60%' }}>
+              <div style={{ 
+                position: 'relative', 
+                paddingTop: '85%', 
+                background: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                overflow: 'hidden',
+                borderBottom: '1px solid rgba(0,0,0,0.05)'
+              }}>
                 <img 
                   src={selectedCareer.image} 
                   alt={selectedCareer.name}
                   style={{
                     position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
+                    top: '5%',
+                    left: '5%',
+                    width: '90%',
+                    height: '90%',
+                    objectFit: 'contain',
+                    filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.08))'
                   }}
                 />
               </div>

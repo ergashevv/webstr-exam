@@ -67,12 +67,19 @@ const SkillsExercise = () => {
             alt="Success" 
             style={{ width: '150px', height: '150px', borderRadius: '50%', objectFit: 'cover', marginBottom: '20px', border: '4px solid white' }} 
           />
-          <h2 className="premium-gradient" style={{ fontSize: '2.5rem' }}>Skills Achieved!</h2>
+          <h2 className="premium-gradient" style={{ fontSize: '2.5rem' }}>
+            {percentage >= 50 ? 'Skills Achieved!' : 'Try Again!'}
+          </h2>
           <div className={styles.scoreDisplay}>
             <span className={styles.scoreNumber}>{score}</span>
             <span className={styles.scoreTotal}>/ {total}</span>
           </div>
-          <p style={{ fontWeight: 'bold', color: 'var(--primary-light)' }}>{percentage}% correct</p>
+          <p style={{ 
+            fontWeight: 'bold', 
+            color: percentage >= 50 ? 'var(--primary-light)' : '#ef4444' 
+          }}>
+            {percentage}% correct
+          </p>
         </div>
 
         <div className={styles.reviewList} style={{ marginTop: '40px' }}>

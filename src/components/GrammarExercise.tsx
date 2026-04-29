@@ -106,7 +106,7 @@ const GrammarExercise = () => {
               border: '4px solid white'
             }} 
           />
-          <h2>Exercise Complete!</h2>
+          <h2>{percentage >= 50 ? 'Exercise Complete!' : 'Try Again!'}</h2>
           <div className={styles.scoreDisplay}>
             <span className={styles.scoreNumber}>{score}</span>
             <span className={styles.scoreTotal}>/ {totalQuestions}</span>
@@ -117,9 +117,12 @@ const GrammarExercise = () => {
               initial={{ width: 0 }}
               animate={{ width: `${percentage}%` }}
               transition={{ duration: 1, ease: "easeOut" }}
+              style={{ backgroundColor: percentage >= 50 ? 'var(--primary-light)' : '#ef4444' }}
             />
           </div>
-          <p className={styles.percentageText}>{percentage}% correct</p>
+          <p className={styles.percentageText} style={{ color: percentage >= 50 ? 'var(--primary-light)' : '#ef4444' }}>
+            {percentage}% correct
+          </p>
         </div>
 
         <div className={styles.resultsReview}>
