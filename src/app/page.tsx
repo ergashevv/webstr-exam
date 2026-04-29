@@ -27,7 +27,10 @@ import {
   HeartPulse,
   BarChart3,
   UserCircle,
-  Lightbulb
+  Lightbulb,
+  Rocket,
+  Sprout,
+  ShieldCheck
 } from 'lucide-react';
 
 
@@ -44,6 +47,9 @@ const careers = [
   { name: 'FIRE FIGHTER', icon: <Flame size={32} />, color: '#F97316' },
   { name: 'LAWYER', icon: <Gavel size={32} />, color: '#374151' },
   { name: 'NURSE', icon: <HeartPulse size={32} />, color: '#06B6D4' },
+  { name: 'ASTRONAUT', icon: <Rocket size={32} />, color: '#8B5CF6' },
+  { name: 'FARMER', icon: <Sprout size={32} />, color: '#10B981' },
+  { name: 'POLICE', icon: <ShieldCheck size={32} />, color: '#1E3A8A' },
 ];
 
 const steps = [
