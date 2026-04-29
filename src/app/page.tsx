@@ -103,7 +103,7 @@ export default function LandingPage() {
         position: 'relative',
         textAlign: 'center',
         padding: '0 20px',
-        backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), url(/hero-bg.PNG)',
+        backgroundImage: 'var(--hero-overlay), url(/hero-bg.PNG)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
@@ -135,8 +135,17 @@ export default function LandingPage() {
           </div>
         </motion.div>
 
-        {/* Floating Career Circles */}
-        <div className="responsive-grid" style={{ gap: '20px' }}>
+        {/* Floating Career Blocks */}
+        <div style={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          justifyContent: 'center', 
+          gap: '15px', 
+          marginTop: '60px',
+          maxWidth: '1200px',
+          width: '100%',
+          zIndex: 2
+        }}>
           {careers.map((career, i) => (
             <motion.div
               key={career.name}
