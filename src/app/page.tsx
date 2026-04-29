@@ -20,7 +20,7 @@ import {
   Globe,
   Briefcase
 } from 'lucide-react';
-import RubricEvaluator from '../components/RubricEvaluator';
+
 
 const careers = [
   { name: 'DOCTOR', icon: <Stethoscope size={32} />, color: '#EF4444' },
@@ -48,7 +48,7 @@ const values = [
 
 export default function LandingPage() {
   return (
-    <main style={{ minHeight: '100vh', overflow: 'hidden' }}>
+    <main style={{ minHeight: '100vh', overflowX: 'hidden' }}>
       {/* Header */}
       <header className="glass" style={{
         position: 'fixed',
@@ -76,40 +76,25 @@ export default function LandingPage() {
           flexWrap: 'wrap',
           justifyContent: 'center'
         }}>
-          <a href="#intro" style={{ fontWeight: '600' }}>Intro</a>
-          <Link href="/exercises/rules" style={{ fontWeight: '600', color: 'var(--primary-light)' }}>Rules</Link>
-          <Link href="/exercises/vocabulary" style={{ fontWeight: '600', color: 'var(--primary-light)' }}>Vocab</Link>
-          <Link href="/exercises/skills" style={{ fontWeight: '600', color: 'var(--primary-light)' }}>Skills</Link>
+          <a href="#intro" className="nav-link">Intro</a>
+          <Link href="/exercises/rules" className="nav-link">Rules</Link>
+          <Link href="/exercises/vocabulary" className="nav-link">Vocab</Link>
+          <Link href="/exercises/skills" className="nav-link">Skills</Link>
           <Link href="/exercises/will-going-to" style={{ 
             background: 'var(--primary)', 
             color: 'white', 
-            padding: '8px 15px', 
+            padding: '8px 18px', 
             borderRadius: '50px',
-            fontWeight: 'bold'
+            fontWeight: '800',
+            fontSize: '0.8rem',
+            boxShadow: '0 4px 12px rgba(var(--primary-rgb), 0.3)'
           }}>
             Exercises
           </Link>
         </nav>
       </header>
       {/* Hero Section */}
-      <section style={{ 
-        height: '100vh', 
-        width: '100%',
-        maxWidth: 'none',
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        position: 'relative',
-        textAlign: 'center',
-        padding: '0 20px',
-        backgroundImage: 'var(--hero-overlay), url(/hero-bg.PNG)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        margin: '0',
-        zIndex: 1
-      }}>
+      <section className="hero-section">
         <div className="hero-glow" />
         
         <motion.div
@@ -118,51 +103,49 @@ export default function LandingPage() {
           transition={{ duration: 0.8 }}
           style={{ marginBottom: '20px' }}
         >
-          <h1 style={{ fontSize: 'clamp(4rem, 10vw, 8rem)', lineHeight: 1, color: 'var(--primary)' }}>
+          <h1 style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', lineHeight: 1, color: 'var(--primary)' }}>
             Next<span style={{ color: 'var(--accent)' }}>Gen</span>
           </h1>
           <div style={{ 
             background: 'var(--primary)', 
             color: 'white', 
-            padding: '10px 40px', 
+            padding: '10px 30px', 
             borderRadius: '50px',
             display: 'inline-block',
-            marginTop: '-10px',
+            marginTop: '10px',
             fontWeight: 'bold',
-            boxShadow: '0 10px 25px -5px rgba(30, 58, 138, 0.3)'
+            boxShadow: '0 10px 25px -5px rgba(30, 58, 138, 0.3)',
+            fontSize: 'clamp(0.8rem, 2vw, 1.1rem)'
           }}>
             Explore today, succeed tomorrow.
           </div>
         </motion.div>
 
         {/* Floating Career Blocks */}
-        <div style={{ 
-          display: 'flex', 
-          flexWrap: 'wrap', 
-          justifyContent: 'center', 
-          gap: '15px', 
-          marginTop: '60px',
-          maxWidth: '1200px',
-          width: '100%',
-          zIndex: 2
-        }}>
+        <div className="career-grid">
           {careers.map((career, i) => (
             <motion.div
               key={career.name}
-              initial={{ opacity: 0, scale: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="glass"
+              transition={{ delay: i * 0.1 }}
+              className="glass career-card"
               style={{
-                padding: '20px',
+                padding: '15px 25px',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '15px',
                 border: `2px solid ${career.color}`,
                 color: career.color,
+                minWidth: '200px',
+                borderRadius: '20px',
+                background: 'var(--glass-bg)',
+                boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.05)'
               }}
             >
               {career.icon}
-              <span style={{ fontWeight: 'bold' }}>{career.name}</span>
+              <span style={{ fontWeight: '800', letterSpacing: '0.05em' }}>{career.name}</span>
             </motion.div>
           ))}
         </div>
@@ -170,31 +153,29 @@ export default function LandingPage() {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          style={{ position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)' }}
+          transition={{ delay: 1.2 }}
+          className="values-container"
         >
-          <div style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
-            {values.map((v, i) => (
-              <div key={v.label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                <div style={{ color: 'var(--accent-dark)' }}>{v.icon}</div>
-                <span style={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '0.1em' }}>{v.label}</span>
-              </div>
-            ))}
-          </div>
+          {values.map((v, i) => (
+            <div key={v.label} className="value-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ color: 'var(--accent-dark)' }}>{v.icon}</div>
+              <span style={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '0.1em' }}>{v.label}</span>
+            </div>
+          ))}
         </motion.div>
       </section>
 
       {/* WebQuest Intro */}
-      <section id="intro" className="glass" style={{ margin: '40px auto', maxWidth: '1000px', padding: '60px' }}>
+      <section id="intro" className="glass container-glass">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <h2 style={{ fontSize: '3rem', marginBottom: '20px', color: 'var(--primary)' }}>
+          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '20px', color: 'var(--primary)' }}>
             WebQuest: <span className="premium-gradient">My Future Career</span>
           </h2>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '700px' }}>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '750px' }}>
             There are many interesting jobs in the world. Each job is important and useful. 
             What do you want to be in the future? Let's find out more about different careers!
           </p>
@@ -238,8 +219,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Resources & Evaluation */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'start' }}>
+      {/* Resources */}
+      <section style={{ display: 'flex', justifyContent: 'center', padding: '0 20px' }}>
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -249,7 +230,7 @@ export default function LandingPage() {
             <Globe className="premium-gradient" />
             <h2 style={{ fontSize: '2rem' }}>Resources</h2>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', width: '100%', maxWidth: '600px' }}>
             {[
               { name: 'Bureau of Labor Statistics', url: 'bls.gov/k12' },
               { name: 'Career One Stop', url: 'careeronestop.org' },
@@ -273,18 +254,6 @@ export default function LandingPage() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          style={{ gridColumn: 'span 2' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '30px', justifyContent: 'center' }}>
-            <Trophy className="premium-gradient" size={32} />
-            <h2 style={{ fontSize: '2.5rem' }}>Full Rubric Evaluation</h2>
-          </div>
-          <RubricEvaluator />
-        </motion.div>
       </section>
 
       {/* Footer / Conclusion */}
@@ -301,8 +270,8 @@ export default function LandingPage() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
         >
-          <h2 style={{ fontSize: '3rem', marginBottom: '20px' }}>Follow your dreams!</h2>
-          <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 40px', lineHeight: 1.6 }}>
+          <h2 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginBottom: '20px' }}>Follow your dreams!</h2>
+          <p style={{ opacity: 0.8, maxWidth: '700px', margin: '0 auto 40px', lineHeight: 1.6, fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>
             Remember: The future belongs to those who believe in the beauty of their dreams. 
             All jobs are important and you can do anything you want!
           </p>

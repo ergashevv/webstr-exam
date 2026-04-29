@@ -172,8 +172,8 @@ const GrammarExercise = () => {
   return (
     <div className={styles.grammarContainer}>
       <div className={styles.grammarHeader}>
-        <h2 className="premium-gradient">Will vs Going To</h2>
-        <p>Master the future tense with these interactive exercises.</p>
+        <h2 className="premium-gradient">Grammar Practice</h2>
+        <p>Master the future tenses and job-related verbs with these interactive exercises.</p>
       </div>
 
       <div className={styles.exerciseList}>

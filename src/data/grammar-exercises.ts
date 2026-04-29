@@ -49,6 +49,30 @@ export const willGoingToExercises: Exercise[] = [
     correctAnswer: 'is going to',
     explanation: 'We use "be going to" for long-term plans or intentions.'
   },
+  {
+    id: 'mc-6',
+    type: 'multiple-choice',
+    question: 'I ___ become a doctor.',
+    options: ['will', 'am going to'],
+    correctAnswer: 'am going to',
+    explanation: 'Used for a long-term plan or ambition.'
+  },
+  {
+    id: 'mc-7',
+    type: 'multiple-choice',
+    question: 'I think robots ___ replace some jobs.',
+    options: ['will', 'are going to'],
+    correctAnswer: 'will',
+    explanation: 'We use "will" for predictions about the future based on our opinion.'
+  },
+  {
+    id: 'mc-8',
+    type: 'multiple-choice',
+    question: 'Look at her! She ___ be a great teacher.',
+    options: ['will', 'is going to'],
+    correctAnswer: 'is going to',
+    explanation: 'We use "be going to" when there is present evidence for a prediction.'
+  },
   // 2. Fill in the blanks
   {
     id: 'fb-1',
@@ -113,5 +137,55 @@ export const willGoingToExercises: Exercise[] = [
     question: '(They / play / football tomorrow)',
     correctAnswer: 'They are going to play football tomorrow',
     explanation: 'A planned future activity.'
+  },
+  {
+    id: 'sc-5',
+    type: 'sentence-construction',
+    question: 'I / be / designer',
+    correctAnswer: ['I will be a designer', 'I am going to be a designer'],
+    explanation: 'Both "will" (prediction/ambition) and "am going to" (plan) can be used here.'
+  },
+  {
+    id: 'sc-6',
+    type: 'sentence-construction',
+    question: 'I / work / in an office',
+    correctAnswer: ['I will work in an office', 'I am going to work in an office'],
+    explanation: 'Future intention or prediction.'
+  },
+  {
+    id: 'sc-7',
+    type: 'sentence-construction',
+    question: 'I / help / people',
+    correctAnswer: ['I will help people', 'I am going to help people'],
+    explanation: 'Future intention or prediction.'
+  },
+  // 4. Present Simple (jobs)
+  {
+    id: 'ps-1',
+    type: 'fill-in-the-blank',
+    question: 'A teacher __ students',
+    correctAnswer: 'teaches',
+    explanation: 'Present Simple for habits and permanent states (3rd person singular).'
+  },
+  {
+    id: 'ps-2',
+    type: 'fill-in-the-blank',
+    question: 'A driver __ a car',
+    correctAnswer: 'drives',
+    explanation: 'Present Simple for habits and permanent states (3rd person singular).'
+  },
+  {
+    id: 'ps-3',
+    type: 'fill-in-the-blank',
+    question: 'A designer __ things',
+    correctAnswer: 'designs',
+    explanation: 'Present Simple for habits and permanent states (3rd person singular).'
+  },
+  {
+    id: 'ps-4',
+    type: 'fill-in-the-blank',
+    question: 'A doctor __ people',
+    correctAnswer: 'helps',
+    explanation: 'Present Simple for habits and permanent states (3rd person singular).'
   }
 ];
